@@ -1,8 +1,11 @@
+import 'package:app_flutter_login_firebase/screens/FormularioScreen.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:app_flutter_login_firebase/screens/Productos.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 
 import './screens/LoginScreen.dart';
 import './screens/RegistroScreen.dart';
-import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,39 +37,63 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Title'),
+        title: const Text('Título'),
       ),
-      body: Cuerpo(context),
+      body: cuerpo(context),
     );
   }
 }
 
-// ignore: non_constant_identifier_names
-Widget Cuerpo(context) {
-  return (Column(
+Widget cuerpo(BuildContext context) {
+  return Column(
     children: <Widget>[
-      Text("Welcome"),
-      BotonLogin(context),
-      BotonRegistro(context)
+      Text("Bienvenido"),
+      botonLogin(context),
+      botonRegistro(context),
+      botonProductos(context),
+      botonFormulario(context)
     ],
-  ));
+  );
 }
 
-Widget BotonLogin(context) {
-  return (FilledButton(
+Widget botonLogin(BuildContext context) {
+  return ElevatedButton(
       onPressed: () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Login()));
       },
-      child: Text("Login")));
+      child: Text("Login"));
 }
 
-Widget BotonRegistro(context) {
-  return (ElevatedButton(
-      style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.amber)),
+Widget botonRegistro(BuildContext context) {
+  return ElevatedButton(
+      style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(Colors.amber)),
       onPressed: () {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Registro()));
       },
-      child: Text("Registro")));
+      child: Text("Registro"));
+}
+
+Widget botonProductos(BuildContext context) {
+  return ElevatedButton(
+      style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(Colors.amber)),
+      onPressed: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Productos()));
+      },
+      child: Text("Productos"));
+}
+
+Widget botonFormulario(BuildContext context) {
+  return ElevatedButton(
+      style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(Colors.amber)),
+      onPressed: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Formulario()));
+      },
+      child: Text("Formulario"));
 }
